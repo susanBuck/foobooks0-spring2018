@@ -13,14 +13,25 @@ $haveResults = false;
 //}
 
 # Version 2 Using a ternary operator
-$searchTerm = isset($_GET['searchTerm']) ? $_GET['searchTerm'] : '';
+$searchTerm = isset($_POST['searchTerm']) ? $_POST['searchTerm'] : '';
+$caseSensitive = isset($_POST['caseSensitive']) ? true : false;
 
 # Version 3 Using a null coalescing operator
 //$searchTerm = $_GET['searchTerm'] ?? '';
 
+
+
 if ($searchTerm) {
+
     foreach ($books as $title => $book) {
-        if ($title != $searchTerm) {
+
+        if($caseSensitive) {
+            $match = $title == $searchTerm;
+        } else {
+            $match = strtolower($title) == strtolower($searchTerm);
+        }
+
+        if(!$match) {
             unset($books[$title]);
         }
     }

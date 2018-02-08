@@ -18,10 +18,14 @@ require 'logic.php';
 
 <h1>Foobooks0</h1>
 
-<form method='GET' action='index.php'>
+<form method='POST' action='index.php'>
 
     <label>Search for a book:
         <input type='text' name='searchTerm' value='<?=sanitize($searchTerm)?>'>
+    </label>
+
+    <label>Case sensitive
+        <input type='checkbox' name='caseSensitive' value='1' <?=($caseSensitive) ? 'checked' : ''?>>
     </label>
 
     <input type='submit' value='Search'>
