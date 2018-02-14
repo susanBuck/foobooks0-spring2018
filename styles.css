@@ -4,11 +4,23 @@ body {
 
 .book {
     border: 1px solid silver;
-    max-width:500px;
+    max-width: 500px;
     margin: 5px;
     padding: 15px;
 }
 
+.intro {
+    font-weight: bold;
+}
+
 .title {
     font-weight: bold;
+}
+
+label {
+    display: block;
+}
+
+footer {
+    margin-top: 200px;
 }

@@ -18,27 +18,30 @@ require 'logic.php';
 
 <h1>Foobooks0</h1>
 
+<p class='intro'>
+    Welcome to foobooks0! Start by searching our library by book title.
+</p>
+
 <form method='POST' action='index.php'>
 
     <label>Search for a book:
-        <input type='text' name='searchTerm' value='<?=sanitize($searchTerm)?>'>
+        <input type='text' name='searchTerm' value='<?= sanitize($searchTerm) ?>'>
     </label>
 
-    <label>Case sensitive
-        <input type='checkbox' name='caseSensitive' value='1' <?=($caseSensitive) ? 'checked' : ''?>>
+    <label>
+        <input type='checkbox' name='caseSensitive' value='1' <?= ($caseSensitive) ? 'checked' : '' ?>>
+        Case sensitive
     </label>
 
-    <input type='submit' value='Search'>
+    <input type='submit' value='Search' class='btn btn-primary'>
 
 </form>
 
-<?php if($searchTerm): ?>
-    <p>You searched for <em><?=sanitize($searchTerm)?></em></p>
-<?php else: ?>
-    <p>Welcome to foobooks0; enter a title above to search our library</p>
-<?php endif; ?>
+<?php if ($searchTerm): ?>
+    <p>You searched for <em><?= sanitize($searchTerm) ?></em></p>
+<?php endif ?>
 
-<?php if($haveResults): ?>
+<?php if ($haveResults): ?>
     <?php foreach ($books as $title => $book): ?>
         <div class='book'>
             <div class='title'><?= $title ?></div>
@@ -47,8 +50,8 @@ require 'logic.php';
         </div>
     <?php endforeach ?>
 
-<?php elseif($searchTerm): ?>
-    No results
+<?php elseif ($searchTerm): ?>
+    <div class='alert alert-danger'>No results</div>
 <?php endif; ?>
 
 <footer>
