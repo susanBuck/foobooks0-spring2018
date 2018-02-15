@@ -1,6 +1,6 @@
 <?php
 require 'helpers.php';
-require 'logic.php';
+require 'index-logic.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ require 'logic.php';
 <form method='POST' action='index.php'>
 
     <label>Search for a book:
-        <input type='text' name='searchTerm' value='<?= sanitize($searchTerm) ?>'>
+        <input type='text' name='searchTerm' value='<?= $form->prefill('searchTerm', 'The Bell Jar') ?>'>
     </label>
 
     <label>
@@ -37,26 +37,40 @@ require 'logic.php';
 
 </form>
 
-<?php if ($searchTerm): ?>
-    <p>You searched for <em><?= sanitize($searchTerm) ?></em></p>
-<?php endif ?>
+<p class='viewAll'>
+    <a href='/all.php'>View all books...</a>
+</p>
 
-<?php if ($haveResults): ?>
-    <?php foreach ($books as $title => $book): ?>
-        <div class='book'>
-            <div class='title'><?= $title ?></div>
-            <div class='author'>by <?= $book['author'] ?></div>
-            <img src='<?= $book['cover_url'] ?>' alt='Cover photo for the book <?= $title ?>'>
-        </div>
-    <?php endforeach ?>
+<?php if ($form->hasErrors) : ?>
+    <div class='alert alert-danger'>
+        <ul>
+            <?php foreach ($errors as $error) : ?>
+                <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php else: ?>
 
-<?php elseif ($searchTerm): ?>
-    <div class='alert alert-danger'>No results</div>
+    <?php if ($searchTerm): ?>
+        <p>You searched for <em><?= sanitize($searchTerm) ?></em></p>
+    <?php endif ?>
+
+    <?php if ($haveResults): ?>
+        <?php foreach ($books as $title => $book): ?>
+            <div class='book'>
+                <div class='title'><?= $title ?></div>
+                <div class='author'>by <?= $book['author'] ?></div>
+                <img src='<?= $book['cover_url'] ?>' alt='Cover photo for the book <?= $title ?>'>
+            </div>
+        <?php endforeach ?>
+
+    <?php elseif ($searchTerm): ?>
+        <div class='alert alert-danger'>No results</div>
+    <?php endif; ?>
+
 <?php endif; ?>
 
-<footer>
-    <a href='http://github.com/susanBuck/foobooks0'>View on Github</a>
-</footer>
+<?php require('footer.php'); ?>
 
 </body>
 </html>

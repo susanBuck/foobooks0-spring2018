@@ -32,8 +32,6 @@ class Book
                 $results[$bookTitle] = $book;
             }
         }
-
         return $results;
     }
-
 }
