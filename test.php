@@ -2,7 +2,7 @@
 
 function floatNumeric($value)
 {
-    return str_replace(' ', '', $value) == (string)(float)$value
+    return str_replace(' ', '', $value) == (string)(float)$value;
 }
 
 # Tests:
