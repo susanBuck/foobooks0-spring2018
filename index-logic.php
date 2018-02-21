@@ -1,7 +1,6 @@
 <?php
-
-require('Book.php');
-require('Form.php');
+require 'Book.php';
+require 'Form.php';
 
 use Foobooks0\Book;
 use DWA\Form;

@@ -1,5 +1,5 @@
 <?php
-require('Book.php');
+require 'Book.php';
 
 use Foobooks0\Book;
 
